@@ -18,9 +18,11 @@ services: # docker compose excepts
     volumes:
       - ./backend/src:/app
     develop:
-      - action: rebuild
-        path: ./backend/requirements.txt
-      - action: rebuild
-        path: ./backend/Dockerfile
-      - action: restart
-        path: ./backend/src
+      watch:
+        - action: rebuild
+          path: ./backend/requirements.txt
+        - action: rebuild
+          path: ./backend/Dockerfile
+        - action: restart
+          path: ./backend/src
+        
