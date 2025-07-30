@@ -1,6 +1,10 @@
 # This is a Python version of the official Python 3 Dockerfile
 FROM python:latest
 
+# host.docker.internal -> localhost
+# curl -X POST -d '{"message": "Hello world"}'  -H "Content-Type: application/json" http://host.docker.internal:8000/api/chats/
+RUN apt-get update && apt-get install -y curl
+
 # Creating Python virtual environment to isolate python from the system-level python
 RUN python -m venv /opt/venv
 # Making sure we use the virtualenv:
