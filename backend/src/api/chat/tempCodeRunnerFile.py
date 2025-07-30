@@ -1,1 +1,0 @@
-.order_by(ChatMessage.id.desc()).fetchall()[:10]
