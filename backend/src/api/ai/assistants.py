@@ -7,6 +7,7 @@ EMAIL_TOOLS = {
     "get_unread_email": get_unread_email,
 }
 
+# This function will be used to generate email messages based on user queries and tools
 def email_assistant(query: str):
     llm_base = get_openai_llm()
    #  llm = llm_base.binds_tools([send_me_email, get_unread_email])
@@ -20,6 +21,7 @@ def email_assistant(query: str):
     ]
     response = llm.invoke(messages)
     messages.append(response)
+   #  Here it will be used to check if the response contains any tool calls and if so, it will be executed
     if hasattr(response, "tool_calls") and response.tool_calls:
         for tool_call in response.tool_calls:
             tool_name = tool_call.get("name")
